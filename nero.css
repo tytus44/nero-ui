@@ -862,6 +862,159 @@ button.sidebar-link {
 }
 
 /* ========================================
+   ICON-ONLY BUTTONS
+   ======================================== */
+
+/* Icon-only Buttons - Default (same size as regular button: 3rem) */
+.btn-icon {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+}
+
+.btn-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0;
+  flex-shrink: 0;
+}
+
+/* Icon-only Small - matches .btn-sm (2rem) */
+.btn-icon.btn-sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.btn-icon.btn-sm svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Icon-only Extra Small - matches .btn-xs (1.5rem) */
+.btn-icon.btn-xs {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.btn-icon.btn-xs svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Icon-only Large - matches larger size (3.5rem) */
+.btn-icon.btn-lg {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.btn-icon.btn-lg svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Icon-only Circular shape */
+.btn-icon.btn-circle {
+  border-radius: var(--radius-full);
+}
+
+/* ========================================
+   ICON-ONLY BUTTONS - NO BACKGROUND
+   ======================================== */
+
+.btn-icon-only {
+  background-color: transparent !important;
+  border: none !important;
+  color: var(--text-primary);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: auto;
+  transition: all 0.2s ease;
+}
+
+.btn-icon-only:hover:not(:disabled) {
+  color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.btn-icon-only svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0;
+  flex-shrink: 0;
+}
+
+.btn-icon-only.btn-sm svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.btn-icon-only.btn-xs svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.btn-icon-only.btn-lg svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Colored variants for icon-only no background */
+.btn-icon-only.btn-primary {
+  color: var(--color-primary);
+}
+
+.btn-icon-only.btn-primary:hover:not(:disabled) {
+  color: var(--color-primary-hover);
+}
+
+.btn-icon-only.btn-secondary {
+  color: var(--color-secondary);
+}
+
+.btn-icon-only.btn-secondary:hover:not(:disabled) {
+  color: var(--color-primary);
+}
+
+.btn-icon-only.btn-success {
+  color: var(--color-success);
+}
+
+.btn-icon-only.btn-success:hover:not(:disabled) {
+  color: var(--color-success-hover);
+}
+
+.btn-icon-only.btn-warning {
+  color: var(--color-warning);
+}
+
+.btn-icon-only.btn-warning:hover:not(:disabled) {
+  color: var(--color-warning-hover);
+}
+
+.btn-icon-only.btn-danger {
+  color: var(--color-danger);
+}
+
+.btn-icon-only.btn-danger:hover:not(:disabled) {
+  color: var(--color-danger-hover);
+}
+
+.btn-icon-only.btn-info {
+  color: var(--color-info);
+}
+
+.btn-icon-only.btn-info:hover:not(:disabled) {
+  color: #0891b2;
+}
+
+/* ========================================
    FORMS
    ======================================== */
 
