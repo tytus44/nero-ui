@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="it" data-theme-radius="medium">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeRO Framework - Style Guide</title>
+    
+    <link rel="stylesheet" href="nero.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <style>
+        /* Stili aggiuntivi solo per la style guide */
+        .color-swatch {
+            width: 100%;
+            height: 4rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-primary);
+        }
+        .component-preview {
+            background: var(--bg-secondary);
+            border: 1px dashed var(--border-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+            /* overflow: hidden; -- RIMOSSO PER FIX DROPDOWN */
+        }
+        .code-block {
+            background-color: #0a0f1e; /* Sfondo scuro per codice */
+            color: #f1f5f9;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+        }
+        .code-block pre {
+            margin: 0;
+        }
+        .theme-dark .code-block {
+             background-color: #000;
+        }
+        
+        /* INIZIO FIX BUG 1: Nuova classe per codice inline */
+        .code-inline {
+            background-color: #0a0f1e;
+            color: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: var(--radius-sm);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            display: inline;
+        }
+        .theme-dark .code-inline {
+            background-color: #000;
+        }
+        /* FINE FIX BUG 1 */
+        
+        .section-title {
+            font-size: var(--font-size-large);
+            font-weight: var(--font-bold);
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+        .section-title:first-child {
+            margin-top: 0;
+        }
+        /* Stile per icone inline (come in btn e alert) */
+        .component-preview svg[data-lucide],
+        .btn svg[data-lucide] {
+            width: 1em; /* Si adatta al font-size */
+            height: 1em;
+            vertical-align: -0.125em; /* Allineamento migliore */
+        }
+        .btn svg[data-lucide] {
+             margin-right: 0.5em;
+        }
+        .sidebar-link svg[data-lucide] {
+             width: 1.5rem;
+             height: 1.5rem;
+             margin-right: var(--spacing-md);
+        }
+        .sidebar-footer svg[data-lucide] {
+             width: 1.5rem;
+             height: 1.5rem;
+        }
+        .site-nav svg[data-lucide] {
+             width: 1.75rem;
+             height: 1.75rem;
+        }
+         .modal-close-btn svg[data-lucide] {
+             width: 1.25rem;
+             height: 1.25rem;
+         }
+         .input-group-icon {
+             width: 1rem;
+             height: 1rem;
+         }
+         .sidebar-header .sidebar-logo svg {
+            width: 2.5rem !important;
+            height: 2.5rem !important;
+         }
+         .sidebar-header .sidebar-toggle-btn svg {
+            width: 1.75rem;
+            height: 1.75rem;
+         }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar-overlay"></div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-logo">
+                    <i data-lucide="app-window"></i>
+                    <span>Nero CSS</span>
+                </a>
+                <button class="sidebar-toggle-btn" id="desktop-toggle-btn">
+                    <i data-lucide="arrow-left-to-line"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+                <ul class="sidebar-menu">
+                    <li><a href="#typography" class="sidebar-link active"><i data-lucide="type"></i> <span>Tipografia</span></a></li>
+                    <li><a href="#colors" class="sidebar-link"><i data-lucide="palette"></i> <span>Colori</span></a></li>
+                    <li><a href="#components" class="sidebar-link"><i data-lucide="layout-grid"></i> <span>Componenti</span></a></li>
+                    <li><a href="#grid" class="sidebar-link"><i data-lucide="grid-3x3"></i> <span>Grid & Layout</span></a></li>
+                    <li><a href="#utilities" class="sidebar-link"><i data-lucide="wand-2"></i> <span>Utility</span></a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-footer">
+                <button id="theme-toggle-btn">
+                    <i data-lucide="sun"></i>
+                    <span>Light Mode</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <nav class="site-nav">
+                <button class="sidebar-toggle-btn">
+                     <i data-lucide="menu"></i>
+                </button>
+                <div class="mobile-title">Nero CSS</div>
+            </nav>
+
+            <div class="content-wrapper">
+                
+                <div class="card mb-lg">
+                    <div class="card-body p-xl">
+                        <h1 class="font-bold text-lg mb-sm">Nero CSS Style Guide</h1>
+                        <p class="text-secondary">
+                            Questa è una guida di riferimento visiva per i componenti di base e le utility del framework Nero.css.
+                        </p>
+                    </div>
+                </div>
+
+                <section id="typography">
+                    <h2 class="section-title">Tipografia</h2>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Headings</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="component-preview">
+                                <h1>h1. Nero CSS Heading</h1>
+                                <h2>h2. Nero CSS Heading</h2>
+                                <h3>h3. Nero CSS Heading</h3>
+                                <h4>h4. Nero CSS Heading</h4>
+                                <h5>h5. Nero CSS Heading</h5>
+                                <h6>h6. Nero CSS Heading</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-lg mt-lg">
+                        <div class="card">
+                            <div class="card-header"><h3 class="card-title">Font Size</h3></div>
+                            <div class="card-body">
+                                <p class="text-lg">.text-lg (22px)</p>
+                                <p class="text-md">.text-md (18px)</p>
+                                <p class="text-base">.text-base (14px) - Default</p>
+                                <p class="text-sm">.text-sm (12px)</p>
+<div class="code-block mt-md">
+<pre><code>&lt;p class="text-lg"&gt;...&lt;/p&gt;
+&lt;p class="text-md"&gt;...&lt;/p&gt;
+&lt;p class="text-base"&gt;...&lt;/p&gt;
+&lt;p class="text-sm"&gt;...&lt;/p&gt;
+</code></pre>
+</div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header"><h3 class="card-title">Font Weight</h3></div>
+                            <div class="card-body">
+                                <p class="font-light">.font-light (300)</p>
+                                <p class="font-normal">.font-normal (400) - Default</p>
+                                <p class="font-medium">.font-medium (500)</p>
+                                <p class="font-semibold">.font-semibold (600)</p>
+                                <p class="font-bold">.font-bold (700)</p>
+<div class="code-block mt-md">
+<pre><code>&lt;p class="font-light"&gt;...&lt;/p&gt;
+&lt;p class="font-normal"&gt;...&lt;/p&gt;
+&lt;p class="font-medium"&gt;...&lt;/p&gt;
+&lt;p class="font-semibold"&gt;...&lt;/p&gt;
+&lt;p class="font-bold"&gt;...&lt;/p&gt;
+</code></pre>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="colors">
+                    <h2 class="section-title">Colori</h2>
+                    <div class="card">
+                        <div class="card-header"><h3 class="card-title">Palette Colori</h3></div>
+                        <div class="card-body grid grid-cols-2 md:grid-cols-4 gap-md">
+                            <div>
+                                <div class="color-swatch" style="background-color: var(--color-primary)"></div>
+                                <p class="font-medium mt-sm">Primary</p>
+                                <p class="text-sm text-secondary">var(--color-primary)</p>
+                            </div>
+                            <div>
+                                <div class="color-swatch" style="background-color: var(--color-success)"></div>
+                                <p class="font-medium mt-sm">Success</p>
+                                <p class="text-sm text-secondary">var(--color-success)</p>
+                            </div>
+                            <div>
+                                <div class="color-swatch" style="background-color: var(--color-warning)"></div>
+                                <p class="font-medium mt-sm">Warning</p>
+                                <p class="text-sm text-secondary">var(--color-warning)</p>
+                            </div>
+                            <div>
+                                <div class="color-swatch" style="background-color: var(--color-danger)"></div>
+                                <p class="font-medium mt-sm">Danger</p>
+                                <p class="text-sm text-secondary">var(--color-danger)</p>
+                            </div>
+                            <div>
+                                <div class="color-swatch" style="background-color: var(--color-info)"></div>
+                                <p class="font-medium mt-sm">Info</p>
+                                <p class="text-sm text-secondary">var(--color-info)</p>
+                            </div>
+                            <div>
+                                <div class="color-swatch" style="background-color: var(--color-secondary)"></div>
+                                <p class="font-medium mt-sm">Secondary</p>
+                                <p class="text-sm text-secondary">var(--color-secondary)</p>
+                            </div>
+                             <div>
+                                <div class="color-swatch" style="background-color: var(--text-primary)"></div>
+                                <p class="font-medium mt-sm">Text Primary</p>
+                                <p class="text-sm text-secondary">var(--text-primary)</p>
+                            </div>
+                            <div>
+                                <div class="color-swatch" style="background-color: var(--bg-body)"></div>
+                                <p class="font-medium mt-sm">Body Background</p>
+                                <p class="text-sm text-secondary">var(--bg-body)</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="components">
+                    <h2 class="section-title">Componenti</h2>
+
+                    <div class="card mb-lg">
+                        <div class="card-header"><h3 class="card-title">Bottoni</h3></div>
+                        <div class="card-body">
+                            <div class="component-preview flex flex-wrap items-center gap-md">
+                                <button class="btn btn-primary">Primary</button>
+                                <button class="btn btn-secondary">Secondary</button>
+                                <button class="btn btn-success">Success</button>
+                                <button class="btn btn-warning">Warning</button>
+                                <button class="btn btn-danger">Danger</button>
+                                <button class="btn btn-info">Info</button>
+                                <button class="btn btn-primary" disabled>Disabled</button>
+                            </div>
+<div class="code-block mt-md">
+<pre><code>&lt;button class="btn btn-primary"&gt;...&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;...&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;...&lt;/button&gt;
+</code></pre>
+</div>
+                            <hr class="my-lg" style="border-color: var(--border-secondary);">
+                            <div class="component-preview flex flex-wrap items-center gap-md">
+                                <button class="btn btn-primary">
+                                    <i data-lucide="home"></i>
+                                    Con Icona
+                                </button>
+                                <button class="btn btn-primary btn-sm">Small</button>
+                                <button class="btn btn-secondary btn-xs">Extra Small</button>
+                            </div>
+<div class="code-block mt-md">
+<pre><code>&lt;button class="btn btn-primary"&gt;
+    &lt;i data-lucide="home"&gt;&lt;/i&gt;
+    Con Icona
+&lt;/button&gt;
+&lt;button class="btn btn-primary btn-sm"&gt;...&lt;/button&gt;
+&lt;button class="btn btn-secondary btn-xs"&gt;...&lt;/button&gt;
+</code></pre>
+</div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-lg">
+                        <div class="card-header"><h3 class="card-title">Alerts</h3></div>
+                        <div class="card-body">
+                            <div class="component-preview">
+                                <div class="alert alert-primary" role="alert">
+                                    <i data-lucide="info"></i>
+                                    Questo è un alert primary.
+                                </div>
+                                <div class="alert alert-success" role="alert">
+                                    <i data-lucide="check-circle-2"></i>
+                                    Questo è un alert success.
+                                </div>
+                                <div class="alert alert-warning" role="alert">
+                                    <i data-lucide="alert-triangle"></i>
+                                    Questo è un alert warning.
+                                </div>
+                                <div class="alert alert-danger" role="alert">
+                                    <i data-lucide="x-circle"></i>
+                                    Questo è un alert danger.
+                                </div>
+                                <div class="alert alert-info" role="alert">
+                                     <i data-lucide="info"></i>
+                                    Questo è un alert info.
+                                </div>
+                            </div>
+<div class="code-block mt-md">
+<pre><code>&lt;div class="alert alert-primary" role="alert"&gt;
+    &lt;i data-lucide="info"&gt;&lt;/i&gt;
+    Questo è un alert primary.
+&lt;/div&gt;
+</code></pre>
+</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-lg">
+                        <div class="card-header"><h3 class="card-title">Badges</h3></div>
+                        <div class="card-body">
+                            <div class="component-preview flex flex-wrap items-center gap-md">
+                                <span class="badge badge-primary">Primary</span>
+                                <span class="badge badge-secondary">Secondary</span>
+                                <span class="badge badge-success">Success</span>
+                                <span class="badge badge-warning">Warning</span>
+                                <span class="badge badge-danger">Danger</span>
+                                <span class="badge badge-info">Info</span>
+                            </div>
+<div class="code-block mt-md">
+<pre><code>&lt;span class="badge badge-primary"&gt;Primary&lt;/span&gt;
+&lt;span class="badge badge-success"&gt;Success&lt;/span&gt;
+</code></pre>
+</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-lg">
+                        <div class="card-header"><h3 class="card-title">Forms</h3></div>
+                        <div class="card-body">
+                            <div class="component-preview">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                                    <div class="flex flex-col gap-md">
+                                        <div class="form-group">
+                                            <label class="form-label" for="form-text">Campo Testo</label>
+                                            <input type="text" id="form-text" class="form-control w-full" placeholder="Scrivi qualcosa...">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="form-label" for="form-icon">Con Icona</label>
+                                            <div class="input-group">
+                                                <i data-lucide="search" class="input-group-icon"></i>
+                                                <input type="text" id="form-icon" class="form-control w-full" placeholder="Cerca...">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label" for="form-select">Select</label>
+                                            <select id="form-select" class="form-control w-full">
+                                                <option>Opzione 1</option>
+                                                <option>Opzione 2</option>
+                                                <option>Opzione 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex flex-col gap-md">
+                                        <div class="form-group">
+                                            <label class="form-label">Checkbox</label>
+                                            <label class="form-check">
+                                                <input type="checkbox" checked>
+                                                <span class="checkmark"></span>
+                                                <span class="form-check-label">Opzione Checkbox 1</span>
+                                            </label>
+                                            <label class="form-check">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                                <span class="form-check-label">Opzione Checkbox 2</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="form-label">Radio</label>
+                                            <label class="form-check">
+                                                <input type="radio" name="radio-group" checked>
+                                                <span class="radio-dot"></span>
+                                                <span class="form-check-label">Opzione Radio 1</span>
+                                            </label>
+                                            <label class="form-check">
+                                                <input type="radio" name="radio-group">
+                                                <span class="radio-dot"></span>
+                                                <span class="form-check-label">Opzione Radio 2</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="form-label">Switch Toggle</label>
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="switch-slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+<div class="code-block mt-md">
+<pre><code>&lt;!-- Campo Testo --&gt;
+&lt;div class="form-group"&gt;
+    &lt;label class="form-label" for="form-text"&gt;Campo Testo&lt;/label&gt;
+    &lt;input type="text" id="form-text" class="form-control w-full" placeholder="..."&gt;
+&lt;/div&gt;
+
+&lt;!-- Checkbox --&gt;
+&lt;label class="form-check"&gt;
+    &lt;input type="checkbox"&gt;
+    &lt;span class="checkmark"&gt;&lt;/span&gt;
+    &lt;span class="form-check-label"&gt;...&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- Radio --&gt;
+&lt;label class="form-check"&gt;
+    &lt;input type="radio" name="radio-group"&gt;
+    &lt;span class="radio-dot"&gt;&lt;/span&gt;
+    &lt;span class="form-check-label"&gt;...&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- Switch --&gt;
+&lt;label class="switch"&gt;
+    &lt;input type="checkbox"&gt;
+    &lt;span class="switch-slider"&gt;&lt;/span&gt;
+&lt;/label&gt;
+</code></pre>
+</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-lg">
+                        <div class="card-header"><h3 class="card-title">Modali</h3></div>
+                        <div class="card-body">
+                            <div class="component-preview flex flex-wrap gap-md">
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#standardModal">Apri Modale Standard</button>
+                                <button class="btn btn-secondary" data-toggle="modal" data-target="#glassModal">Apri Modale Glass</button>
+                            </div>
+<div class="code-block mt-md">
+<pre><code>&lt;!-- Bottone di avvio --&gt;
+&lt;button class="btn btn-primary" data-toggle="modal" data-target="#myModal"&gt;
+    Apri Modale
+&lt;/button&gt;
+
+&lt;!-- HTML Modale (Standard) --&gt;
+&lt;div class="modal" id="myModal"&gt;
+    &lt;div class="modal-backdrop"&gt;&lt;/div&gt;
+    &lt;div class="modal-content"&gt;
+        &lt;div class="modal-header"&gt;
+            &lt;h2&gt;Titolo Modale&lt;/h2&gt;
+            &lt;button class="modal-close-btn"&gt;
+                &lt;i data-lucide="x"&gt;&lt;/i&gt;
+            &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="modal-body text-left"&gt;
+            <p>Contenuto del modale...</p>
+        &lt;/div&gt;
+        &lt;div class="modal-footer"&gt;
+            &lt;button class="btn btn-secondary" data-dismiss="modal"&gt;Chiudi&lt;/button&gt;
+            &lt;button class="btn btn-primary"&gt;Salva Modifiche&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Per Modale Glass --&gt;
+&lt;div class="modal modal-glass" id="myGlassModal"&gt;
+    ...
+&lt;/div&gt;
+</code></pre>
+</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                        <div class="card">
+                            <div class="card-header"><h3 class="card-title">Dropdown</h3></div>
+                            <div class="card-body">
+                                <div class="component-preview">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary" data-toggle="dropdown">
+                                            Menu Dropdown
+                                            <i data-lucide="chevron-down" class="ml-sm" style="margin-right: -5px; width: 16px; height: 16px;"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a href="#" class="dropdown-item">Azione 1</a>
+                                            <a href="#" class="dropdown-item">Azione 2</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" class="dropdown-item">Azione Separata</a>
+                                        </div>
+                                    </div>
+                                </div>
+<div class="code-block mt-md">
+<pre><code>&lt;div class="dropdown"&gt;
+    &lt;button class="btn btn-secondary" data-toggle="dropdown"&gt;
+        Menu Dropdown
+    &lt;/button&gt;
+    &lt;div class="dropdown-menu"&gt;
+        &lt;a href="#" class="dropdown-item"&gt;Azione 1&lt;/a&gt;
+        &lt;div class="dropdown-divider"&gt;&lt;/div&gt;
+        &lt;a href="#" class="dropdown-item"&gt;Azione 2&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header"><h3 class="card-title">Pagination</h3></div>
+                            <div class="card-body">
+                                <div class="component-preview">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled"><a class="page-link" href="#">Prec</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Succ</a></li>
+                                    </ul>
+                                </div>
+<div class="code-block mt-md">
+<pre><code>&lt;ul class="pagination"&gt;
+    &lt;li class="page-item disabled"&gt;&lt;a class="page-link"&gt;...&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-item active"&gt;&lt;a class="page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-item"&gt;&lt;a class="page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-lg">
+                        <div class="card-header"><h3 class="card-title">Tabelle</h3></div>
+                        <div class="card-body">
+                            <div class="component-preview">
+                                <div class="table-container">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>Email</th>
+                                                <th>Ruolo</th>
+                                                <th>Azioni</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Mario Rossi</td>
+                                                <td>mario@rossi.it</td>
+                                                <td>Admin</td>
+                                                <td>
+                                                    <button class="btn btn-info"><i data-lucide="edit-2"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Anna Verdi</td>
+                                                <td>anna@verdi.it</td>
+                                                <td>User</td>
+                                                <td>
+                                                    <button class="btn btn-info"><i data-lucide="edit-2"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+<div class="code-block mt-md">
+<pre><code>&lt;div class="table-container"&gt;
+    &lt;table class="table"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;...&lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;...&lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="grid">
+                    <h2 class="section-title">Grid & Layout</h2>
+                    <div class="card">
+                        <div class="card-header"><h3 class="card-title">Sistema Grid Responsivo</h3></div>
+                        <div class="card-body">
+                            <p class="mb-md">Questo layout è <code class="code-inline">grid-cols-1</code> di default, <code class="code-inline">md:grid-cols-2</code> su tablet, e <code class="code-inline">lg:grid-cols-4</code> su desktop.</p>
+                            <div class="component-preview">
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+                                    <div class="p-md text-center rounded-md" style="background: var(--bg-tertiary);">Colonna 1</div>
+                                    <div class="p-md text-center rounded-md" style="background: var(--bg-tertiary);">Colonna 2</div>
+                                    <div class="p-md text-center rounded-md" style="background: var(--bg-tertiary);">Colonna 3</div>
+                                    <div class="p-md text-center rounded-md" style="background: var(--bg-tertiary);">Colonna 4</div>
+                                </div>
+                            </div>
+<div class="code-block mt-md">
+<pre><code>&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md"&gt;
+    &lt;div&gt;Colonna 1&lt;/div&gt;
+    &lt;div&gt;Colonna 2&lt;/div&gt;
+    &lt;div&gt;Colonna 3&lt;/div&gt;
+    &lt;div&gt;Colonna 4&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="utilities">
+                    <h2 class="section-title">Utility</h2>
+                    <div class="card">
+                        <div class="card-header"><h3 class="card-title">Utility Principali</h3></div>
+                        <div class="card-body">
+                            <p>Il framework include un set completo di utility responsive (es. <code class="code-inline">p-md</code>, <code class="code-inline">md:p-lg</code>, <code class="code-inline">w-full</code>, <code class="code-inline">lg:w-1/2</code>, <code class="code-inline">flex</code>, <code class="code-inline">sm:flex-col</code>, <code class="code-inline">shadow-lg</code>, <code class="code-inline">rounded-xl</code>, ecc.)</p>
+                            
+                            <h4 class="font-semibold mt-lg mb-md">Esempio Sizing & Spacing:</h4>
+                            <div class="component-preview">
+                                <div class="md:flex gap-md">
+                                    <div class="w-full md:w-1/2 p-lg rounded-lg shadow-md" style="background: var(--bg-primary);">
+                                        <h5 class="font-bold">Card A</h5>
+                                        <p class="text-sm">.w-full .md:w-1/2 .p-lg .rounded-lg .shadow-md</p>
+                                    </div>
+                                    <div class="w-full md:w-1/2 p-lg rounded-lg shadow-md mt-md md:mt-0" style="background: var(--bg-primary);">
+                                        <h5 class="font-bold">Card B</h5>
+                                        <p class="text-sm">.w-full .md:w-1/2 .p-lg .rounded-lg .shadow-md .mt-md .md:mt-0</p>
+                                    </div>
+                                </div>
+                            </div>
+<div class="code-block mt-md">
+<pre><code>&lt;div class="md:flex gap-md"&gt;
+    &lt;div class="w-full md:w-1/2 p-lg rounded-lg shadow-md"&gt;
+        ...
+    &lt;/div&gt;
+    &lt;div class="w-full md:w-1/2 p-lg rounded-lg shadow-md mt-md md:mt-0"&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div> </main>
+    </div>
+
+    <div class="modal" id="standardModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Modale Standard</h2>
+                <button class="modal-close-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body text-left">
+                <p>Questo è un modale standard con uno sfondo solido <code class="code-inline">var(--bg-primary)</code>.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                <button class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal modal-glass" id="glassModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Modale Glass</h2>
+                <button class="modal-close-btn">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body text-left">
+                <p>Questo è un modale con <code class="code-inline">.modal-glass</code> per l'effetto trasparenza.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                <button class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="nero.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // 1. Inizializza Lucide Icons
+            lucide.createIcons(); 
+
+            // 2. Gestione Toggle Tema
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            const sunIcon = '<i data-lucide="sun"></i>';
+            const moonIcon = '<i data-lucide="moon"></i>';
+            
+            themeToggleBtn.addEventListener('click', () => {
+                const body = document.body;
+                body.classList.toggle('theme-dark');
+                
+                if (body.classList.contains('theme-dark')) {
+                    themeToggleBtn.innerHTML = moonIcon + '<span>Dark Mode</span>';
+                } else {
+                    themeToggleBtn.innerHTML = sunIcon + '<span>Light Mode</span>';
+                }
+                // Re-inizializza la nuova icona appena aggiunta
+                lucide.createIcons();
+            });
+            
+            // 3. Gestione link sidebar (solo per styleguide)
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // Rimuovi 'active' da tutti
+                    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                    // Aggiungi 'active' a quello cliccato
+                    e.currentTarget.classList.add('active');
+                    
+                    // Chiudi la sidebar mobile se aperta
+                    const sidebar = document.querySelector('.sidebar');
+                    const overlay = document.querySelector('.sidebar-overlay');
+                    if (sidebar.classList.contains('show')) {
+                        sidebar.classList.remove('show');
+                        overlay.classList.remove('show');
+                    }
+                });
+            });
+
+        }); // Fine del listener DOMContentLoaded
+    </script>
+</body>
+
+</html>
